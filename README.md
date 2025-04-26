@@ -85,8 +85,6 @@ In our example app (this repo) we will make use of the authentication support. L
 
 # Setup Firebase Authentication
 
-We will follow the general instructions from this artible ![]() . We will also add additional details and ensure the application works properly with our backend API.
-
 Step-by-step Firebase Authentication setup
 
 - Go to the Firebase console
@@ -123,10 +121,17 @@ Step-by-step Firebase Authentication setup
 - Create a test user: Click users and create a user, for example
   - email: john@email.com
   - password: john1234
+- Install firebase
+
+  ```sh
+  $ npm install firebase
+  ```
+
+  this will install Firebase to your app and add it to your `package.json`
 
 ## Firebase Config
 
-Continuing with the Firebase setup, create `firebase-config.tsx` in your src directory with the following contents. This file is almost exactly what you see in the Firebase settings page; however, in our case, the environment secrets are read from the .env file. You do not want these secrets in your app code or they can be visible in the web console, an obvious security problem.
+Now we will setup Firebase in the application. Create `firebase-config.tsx` in your src directory with the following contents. This file is almost exactly what you see in the Firebase settings page; however, in our case, the environment secrets are read from the .env file. You do not want these secrets in your app code or they can be visible in the web console, an obvious security problem.
 
 The comments about where to find additional Firebase libraries can be useful for the future.
 
@@ -154,14 +159,11 @@ export const auth = getAuth(app);
 
 ```
 
-The `import.meta.env.VITE_KEY` pattern is the method for importing build time metadata (e.g.,environment variatles). The "`Vite_`" prefix is required to expose variables to the frontend.
+The `import.meta.env.VITE_KEY` pattern is the method for importing build-time metadata (e.g.,environment variatbles). The "`Vite_`" prefix is required to expose variables to the frontend.
 
 In the src directory, create the `vite-env.d.ts` file with the following contents.
 
-In addition to initializing the environment variables for the application, the above code also
-
-- imports getAuth which supports login with Email and Password, signout, and onAuthStateChanged.
-- then the Auth service is initialized and exported so it is available anywhere in the application
+In addition to initializing the application's environment variables, the above code also imports getAuth, which supports login with Email and Password, signout, and onAuthStateChanged. Additionally, the Auth service is initialized and exported so it is available anywhere in the application
 
 ```JS
 /// <reference types="vite/client" />
