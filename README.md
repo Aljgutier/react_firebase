@@ -99,7 +99,7 @@ Step-by-step Firebase Authentication setup
   - choose any other auth providers: in this exampl, I also chose Google.
     ![Firebase Project Settings](./images/firebase_settings_sdk.png)
 
-- Next, click on the project settings btton on the left and scroll down to the firebase config.
+- Next, click on the project settings button on the left and scroll down to the firebase config.
 
   - on the SDK Config, click on `config` and copy the secrets into your projects `.env` file. Make sure to follow the below instructions for setting up the `.env` file.
 
