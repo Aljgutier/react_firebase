@@ -26,3 +26,9 @@ dist-ssr
 
 # Secrets
 .env
+
+# Lint
+eslint.config.js
+
+# tmp ... project scractchpad tmp directory
+tmp/
