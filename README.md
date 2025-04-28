@@ -196,7 +196,7 @@ function Header() {
 export default Header;
 ```
 
-Each of our pages are definded within the `pates` subdirectory, as follows.
+Each of our pages are definded within the `pages` subdirectory, as follows.
 
 Home Page
 
