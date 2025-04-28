@@ -196,6 +196,60 @@ function Header() {
 export default Header;
 ```
 
+Each of our pages are definded within the `pates` subdirectory, as follows.
+
+Home Page
+
+```JS
+// pages/home.tsx
+import React from "react";
+
+const Home = () => {
+  return (
+    <div>
+      <h1>Home</h1>
+    </div>
+  );
+};
+
+export default Home;
+```
+
+Sign-in page
+
+```JS
+// pages/signin.tsx
+import React from "react";
+
+const Signin = () => {
+  return (
+    <div>
+      <h1> Sign In</h1>
+    </div>
+  );
+};
+
+export default Signin;
+```
+
+Sign-up page
+
+```JS
+// pages/signup.tsx
+import React from "react";
+
+const Signup = () => {
+  return (
+    <div>
+      <h1> Sign Up</h1>
+    </div>
+  );
+};
+
+export default Signup;
+
+```
+
 If it isn't already running, make sure your app is running - i.e., run $ `npm run dev` in the app root directory.
 
 Go to the apps URL - http://localhost:5173/ and you should see links to each of the pages (Home, Signin, Signup) and the current pages name printed as an `h1` header (as below).

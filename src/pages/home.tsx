@@ -1,4 +1,4 @@
-// pages/Home.tsx
+// pages/home.tsx
 import React from "react";
 
 const Home = () => {

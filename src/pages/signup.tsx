@@ -1,4 +1,4 @@
-// pages/About.tsx
+// pages/signup.tsx
 import React from "react";
 
 const Signup = () => {
