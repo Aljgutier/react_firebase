@@ -40,3 +40,161 @@
 .read-the-docs {
   color: #888;
 }
+
+/***** NAV *****/
+
+.nav-button {
+  background: none;
+  border: none;
+  color: black;
+  cursor: pointer;
+  font: inherit;
+  padding: 0;
+  width: auto;
+  min-width: 0;
+}
+
+.nav-button:focus {
+  outline: none;
+}
+
+.nav-button:hover {
+  text-decoration: underline;
+}
+
+.navbar-links {
+  display: flex;
+  align-items: center;
+  gap: 2rem;
+}
+
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: white;
+  color: black;
+  padding: 0.75rem 2rem;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  z-index: 1000;
+  box-sizing: border-box;
+}
+
+.navbar-links {
+  padding-right: 1rem; /* ensures text doesn't hit right edge */
+}
+
+.navbar a {
+  color: black;
+  text-decoration: none;
+  margin-left: 1.5rem;
+}
+
+.navbar a:hover {
+  text-decoration: underline;
+}
+
+.navbar-logo a {
+  font-weight: bold;
+  font-size: 1.2rem;
+}
+
+.content {
+  padding: 5rem 2rem; /* add top padding so content doesn’t hide under fixed navbar */
+}
+
+/***** INPUT FORMS *****/
+
+.formContainer {
+  position: relative;
+}
+
+.formHeading {
+  margin-left: calc(100px + 0.5rem); /* align with label text */
+  font-size: 2 rem; /* increase font size */
+  font-weight: bold;
+  margin-left: 4rem;
+  text-align: center;
+  white-space: nowrap; /* prevent wrapping */
+}
+
+.inputGroup {
+  display: flex;
+  align-items: center;
+  margin-bottom: 1rem;
+}
+
+.inputGroup label {
+  width: 100px;
+  margin-right: 0.5rem;
+  text-align: right;
+}
+
+.inputAlign {
+  width: 100%;
+  position: relative; /* needed for icon */
+}
+
+.inputField {
+  width: 100%;
+  box-sizing: border-box;
+  padding: 0.5rem;
+  padding-right: 40px; /* space for icon */
+}
+
+.passwordInputContainer {
+  position: relative;
+}
+
+.passwordToggleIcon {
+  position: absolute;
+  top: 50%;
+  right: 10px;
+  transform: translateY(-50%);
+  cursor: pointer;
+  width: 20px;
+  height: 20px;
+  opacity: 0.7;
+}
+
+.buttonAlign {
+  width: calc(100% - 100px - 0.5rem); /* same as input width */
+  margin-left: calc(100px - 1rem);
+  text-align: center;
+}
+
+.buttonAlign button {
+  background-color: #f0f0f0; /* only applies to button, not container */
+  border: 1px solid #ccc;
+  padding: 0.5rem 1rem;
+  cursor: pointer;
+  color: black;
+  text-decoration: none;
+  display: inline-block; /* ensures button size doesn't stretch full width */
+}
+
+.buttonAlign button:hover {
+  background-color: #e0e0e0;
+  text-decoration: underline;
+}
+
+.linkAlign {
+  width: calc(100% - 100px - 0.5rem); /* same width as .buttonAlign */
+  margin-left: calc(100px - 1rem); /* same margin-left as .buttonAlign */
+  text-align: center;
+}
+
+/****** p-tag HOVER ALIGN *********/
+p > a {
+  color: black;
+  text-decoration: none;
+}
+
+p > a:hover {
+  text-decoration: underline;
+  background-color: #f0f0f0; /* light gray highlight */
+}
