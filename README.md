@@ -1,7 +1,5 @@
 # React Firebase and FastAPI <!-- omit from toc -->
 
-**--UNDER DEVELOPMENT--**
-
 ## Contents <!-- omit from toc -->
 
 - [Abstract](#abstract)
@@ -18,13 +16,6 @@
 - [User Page Private Route](#user-page-private-route)
 - [Connecting to a FastAPI Backend](#connecting-to-a-fastapi-backend)
 - [Other Useful Examples/Blog Posts](#other-useful-examplesblog-posts)
-
-TODO
-
-- firestore username setup
-- signup page username to firestore functionality
-- protected route to user page
-- home page
 
 # Abstract
 
