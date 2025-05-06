@@ -19,11 +19,9 @@
 
 # Abstract
 
-This repo demonstrates how to build a React applicaton with Firebase Authtentication including OAuth, login, signup, reset password, and a user home page with a private route. We will also connect this React Firebase frontend to a FastAPI backend with a secure token.
-
 A fundamental requirement of commercial applicatons is user signup, login, with OAuth (Authorization). The React UI compoenent framework is by far the most popular open-source Javascript framework for full-stack application development. Together, React with Firebase and fastAPI, constitute a modern technology stack for application categories such as full-stack analytics applications.
 
-In this repo we will create a starter React App wih user account creation and user login. This starter app can serve as the starting point for a realistic React application utilizing Firebase authentication. For the backend we will make use of the starter fastAPI app developed and deployed [here](https://github.com/Aljgutier/fastapi_docker/tree/main)
+This repo demonstrates how to build a React applicaton with user account creation, This starter app can serve as the starting point for a realistic React application utilizing Firebase authentication. The App ("client") user management includes OAuth, login, signup, reset password, and a user home page with a private route. We will also connect this React Firebase frontend to a FastAPI backend including a secure token. This is the basis of a full-stack React application, which serves as a basis for further development.
 
 # Create the React App with Vite
 
