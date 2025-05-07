@@ -21,7 +21,7 @@
 
 A fundamental requirement of commercial applications is secure user sign-up and login via OAuth (authorization). React, the most widely adopted open-source JavaScript framework for building user interfaces, plays a central role in modern full-stack application development. Combined with Firebase and FastAPI, React forms a modern technology stack particularly well-suited for building full-stack applications such as analytics platforms, dashboards, data exploration tools, and scientific or research-oriented web applications where Python is preferred on the backend.
 
-This repo demonstrates how to build a React application with Firebase-based user authentication. It provides a realistic starting point for a full-stack React project that uses Firebase for authentication and user management. Features include OAuth-based sign-in, sign-up, password reset, and a protected user home page. The React frontend is integrated with a FastAPI backend that supports secure token validation. This project serves as a solid foundation for developing a production-ready application.
+This repo demonstrates how to build a React application with user account creation and authentication using Firebase. It provides a realistic starting point for a full-stack application, with client-side user management features including OAuth login, sign-up, password reset, and a protected user home page. The React frontend is also connected to a FastAPI backend with secure token validation. This serves as a strong foundation for a production-ready full-stack application.
 
 # Create the React App with Vite
 
