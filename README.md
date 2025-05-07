@@ -66,13 +66,11 @@ Start the dev server
 $ npm run dev
 ```
 
-In a web browser go to http://localhost:5173/
-
-and you should see the Vite + React logos
+In a web browser go to http://localhost:5173/ and you should see the Vite + React logos
 
 ![React+Vite](./images/vite_react.png)
 
-The application structure will be as follows
+The application's file/directory structure is as follows
 
 ```text
     - vite.config.js
@@ -91,26 +89,26 @@ Notice that the App and main suffixes are changed `tsx` (manually changed, after
 
 # App Pages and Routes
 
-The goal for this app is managing user login with sign-in, sign-up and ulitmately, after sign in, navigating the user to their User Page. We start by creating default apps pages: Home, Sign-in, Sign-up, Reset Password, and User Page.
+The goal for this app is managing user login with sign-in, sign-up and ulitmately, after sign-in, navigating the user to their User Page. We start by creating default apps pages: Home, Sign-in, Sign-up, Reset Password, and User Page.
 
 The page links work as follows:
 
 - The apps landing page, "/" is the Home Page. In a real application the Home Page contains content corresponding to the business and branding.
 - From the Home page, the user may choose to sign-in, or sign-up.
-- From the Sign-in page, once signed-in, the user will automatically be navigated to the User Page.
-- Later the will be within User Page in a protected route, only accessible if the user is signed-in. Initially, it is accessable as any other route.
+- From the Sign-in page, once signed-in, the user will automatically be directed to the User Page.
+- Later we will create a protected route for the User Page, that is, the User page is only accessible if the user is signed-in.
 - The Sign-up page enables the user to create an account with the application.
-- A Reset Password page is accessable with a link from the Sign In page. When reseting the password
+- A Reset Password page is accessable with a link from the Sign-in page. When reseting the password
 
 THe content for these initial pages is an `h1` tag with the name of the page.
 
-In order handle page routes, React we will install `react-router-dom`
+In order handle page routes in React we will install `react-router-dom` with the following command.
 
 ```sh
 $ install react-router-dom
 ```
 
-Our initial app is listed in the following code blocks.
+Our initial app pages are listed in the code blocks below.
 
 Main.tsx is the entry point for the `Vite-React` app. It imports App from App.jsx.
 
