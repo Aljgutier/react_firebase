@@ -1,4 +1,4 @@
-# React Firebase User Sign-in and Sign-up Management <!-- omit from toc -->
+# React Firebase App with User Sign-in and Sign-up Management <!-- omit from toc -->
 
 ## Contents <!-- omit from toc -->
 
@@ -30,7 +30,7 @@ Pre-requisites
 - Node.js installed on your machine (on Mac install with "brew"). Installing Node will install `npm`, as it comes bundled with Node.js
 - The code editor, VSCode is recommended
 
-Next, create your react app from template, with `vite`. In a command window, create the application
+Next, create your react app from template, with `vite`. In a directory just above your desired project directory, create the application with the following shell command. This will create the project directory, e.g., `react_firebase` along with the default project files and structure.
 
 ```sh
 $ npm create vite@latest react_firebase –template react
@@ -83,7 +83,6 @@ The application structure will be as follows
         - App.tsx
         - index.dss
         - main.tsx
-
 ```
 
 As compared to the `create-react-app`, the approach used before v19, there is now a`main.tsx` in the src directory instead of `index.jsx` and in the public directory `vite.svg`. We also see `vite.config.js` in the main project directory.
@@ -932,7 +931,7 @@ WORK IN PROGRESS
 
 # Other Useful Examples/Blog Posts
 
-I began tyring to setup a React-Firebase-FastAPI app by readng a few blog posts. Though I did not find any one source, which covered all my needs, I found the following two articles helpful.
+I began tyring to setup a React-Firebase-FastAPI app by readng a few blog posts. No one source fullfilled all the requirement, however, the following two articles are helpful.
 
 - [Firebase Authenticaion in the Backend](https://medium.com/@gabriel.cournelle/firebase-authentication-in-the-backend-with-fastapi-4ff3d5db55ca)
 - [Firebase Authenticaion with React](https://medium.com/@amamit/firebase-authentication-with-react-2ac170996ae0)
