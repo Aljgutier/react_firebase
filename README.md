@@ -954,7 +954,7 @@ VITE_BACKEND_URL=http://localhost:8000
 
 # Other Useful Examples/Blog Posts
 
-I began tyring to setup a React-Firebase-FastAPI app by readng a few blog posts. No one source fullfilled all the requirement, however, the following two articles are helpful.
+I began tyring to setup a React-Firebase-FastAPI app by readng a few blog posts. No one source fullfilled all the requirements, however, the following two articles were helpful.
 
 - [Firebase Authenticaion in the Backend](https://medium.com/@gabriel.cournelle/firebase-authentication-in-the-backend-with-fastapi-4ff3d5db55ca)
 - [Firebase Authenticaion with React](https://medium.com/@amamit/firebase-authentication-with-react-2ac170996ae0)
