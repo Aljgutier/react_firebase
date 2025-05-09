@@ -23,7 +23,7 @@ const Signin = () => {
       );
 
       if (userCredential.user) {
-        navigate("/user");
+        navigate("/user_page");
       }
     } catch (error) {
       // Add toast notification user feedback
@@ -77,7 +77,7 @@ const Signin = () => {
       <ToastContainer />
 
       <p className="linkAlign">
-        <Link to="/resetPassword">Reset Password</Link>
+        <Link to="/reset_password">Reset Password</Link>
       </p>
     </div>
   );

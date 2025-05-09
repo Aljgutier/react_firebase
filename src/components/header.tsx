@@ -19,7 +19,7 @@ function Header() {
 
   const handleHome = () => {
     if (auth.currentUser) {
-      navigate("/user");
+      navigate("/user_page");
     } else {
       navigate("/");
     }

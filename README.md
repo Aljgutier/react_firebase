@@ -310,7 +310,7 @@ In your browser, go to the apps URL - http://localhost:5173/ and you should see 
 
 # Introduction to Firebase
 
-Before diving into the setup, its useful to review and understand the Firebase offerings. Firebase is a comprehensiveaApp development service by Google hosted in GCP (Google CLoud Platorm). It provides a suite of tools and services to help developers build, improve, and grow web and mobile applications.
+Before diving into the setup, its useful to review and understand the overall Firebase features. Firebase is a comprehensiveaApp development service by Google hosted in GCP (Google CLoud Platorm). It provides a suite of tools and services to help developers build, improve, and grow web and mobile applications. Firebase is also compatable with other GCP features such as cloud functons which can trigger actions based on Firebase for easy integration of other cloud tools.
 
 Below are some of the features it offers
 
