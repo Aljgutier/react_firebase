@@ -153,10 +153,10 @@ The routes are defined in `router.tsx` with `createBrowserRouter`, which creates
 
 Notice that pages (Home, Signin, Signup, User, Reset Password) are nested inside the shared Header layout.
 
-router.tsx
+routes.tsx
 
 ```JSX
-// router.tsx
+// routes.tsx
 import React from "react";
 import {
   createBrowserRouter,
@@ -166,7 +166,7 @@ import {
 import Home from "./pages/home";
 import Signin from "./pages/signin";
 import Signup from "./pages/signup";
-import User from "./pages/user";
+import UserPage from "./pages/user";
 import ResetPassword from "./pages/resetPassword";
 import Header from "./components/header";
 
@@ -176,8 +176,8 @@ const router = createBrowserRouter(
       <Route index element={<Home />} />
       <Route path="signin" element={<Signin />} />
       <Route path="signup" element={<Signup />} />
-       <Route path="user" element={<User />} />
-      <Route path="resetPassword" element={<ResetPassword />} />
+       <Route path="user_page" element={<UserPage />} />
+      <Route path="reset_password" element={<ResetPassword />} />
     </Route>
   )
 );
@@ -240,7 +240,7 @@ const Signin = () => {
   return (
     <div>
       <h1> Sign In</h1>
-       <p> <Link to="/resetPassword">Reset Password</Link>  </p>
+       <p> <Link to="/reset_password">Reset Password</Link>  </p>
     </div>
   );
 };
@@ -269,10 +269,10 @@ export default Signup;
 User Page
 
 ```JS
-// pages/user.tsx
+// pages/user_page.tsx
 import React from "react";
 
-const User = () => {
+const UserPage = () => {
   return (
     <div>
       <h1>User Page</h1>
@@ -280,7 +280,7 @@ const User = () => {
   );
 };
 
-export default User;
+export default UserPage;
 
 ```
 
@@ -926,6 +926,31 @@ export default PrivateRoute;
 # Connecting to a FastAPI Backend
 
 WORK IN PROGRESS
+
+Automatically parses JSON — no need for response.json()
+Throws on non-2xx status codes, so you can catch errors more easily
+Cleaner config for headers
+
+Automatically parses JSON response data
+
+Axios Automatically rejects promises for HTTP error status codes
+
+Fetch Does not automatically reject promises for HTTP error status codes (e.g., 404, 500); requires manual checking of response.ok
+
+Automatically serializes request body data
+
+Provides interceptors to modify requests and responses
+
+```sh
+$ npm install axios
+```
+
+.env
+
+```sh
+...
+VITE_BACKEND_URL=http://localhost:8000
+```
 
 # Other Useful Examples/Blog Posts
 
