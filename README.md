@@ -15,7 +15,7 @@
 - [Reset Password](#reset-password)
 - [User Page Private Route](#user-page-private-route)
 - [Connecting to a FastAPI Backend](#connecting-to-a-fastapi-backend)
-- [Other Useful Examples/Blog Posts](#other-useful-examplesblog-posts)
+- [Reference Blog Posts](#reference-blog-posts)
 
 # Abstract
 
@@ -853,7 +853,7 @@ The Reset Password code includes the following:
 
 # User Page Private Route
 
-The private route functionality is added to the router.tsx code.
+The private route functionality is added to the routes.tsx code. If the user is signed in they are directed to the `user_page` route.
 
 ```JS
 // src/router.tsx
@@ -866,7 +866,7 @@ import {
 import Home from "./pages/home";
 import Signin from "./pages/signin";
 import Signup from "./pages/signup";
-import User from "./pages/user";
+import UserPage from "./pages/userPage";
 import ResetPassword from "./pages/resetPassword";
 import Header from "./components/header";
 import PrivateRoute from "./components/pivateRoute";
@@ -877,20 +877,16 @@ const router = createBrowserRouter(
       <Route index element={<Home />} />
       <Route path="signin" element={<Signin />} />
       <Route path="signup" element={<Signup />} />
-      <Route path="resetPassword" element={<ResetPassword />} />
+      <Route path="reset_password" element={<ResetPassword />} />
 
-      {/* Protect user route */}
+      {/* Protect userPage route */}
       <Route element={<PrivateRoute />}>
-        <Route path="user" element={<User />} />
+        <Route path="user_page" element={<UserPage />} />
       </Route>
     </Route>
   )
 );
-
-export default router;
 ```
-
-We don’t want to immediately redirect to /signin before Firebase has a chance to load, therefore `onAuthStateChanged` is detected because `auth.currentUser` is often null on first render. Firebase needs a moment to initialize the authentication state. Without it, protected routes may falsely redirect unauthenticated users even if they’re logged in., This issue is fixed this by listening for Firebase's auth state along with a loading indicator (or nothing, or a spinner) while waiting
 
 The router imports a `privateRoute` component (./src/compoentns) If the user is signed in then access to the User Page is allowed, othwerwise the user is directed to the Sign-in page.
 
@@ -923,36 +919,112 @@ const PrivateRoute = () => {
 export default PrivateRoute;
 ```
 
+We don’t want to immediately redirect to /signin before Firebase has a chance to load, therefore `onAuthStateChanged` is detected because `auth.currentUser` is often null on first render. Firebase needs a moment to initialize the authentication state. Without it, protected routes may falsely redirect unauthenticated users even if they’re logged in., This issue is fixed by listening for Firebase's auth state along with a loading indicator (or nothing, or a spinner) while waiting
+
 # Connecting to a FastAPI Backend
 
-WORK IN PROGRESS
+To connect our React app functionality we deployed the fastAPI, described [here](https://github.com/Aljgutier/fastapi_docker/tree/main), to our local environment.
 
-Automatically parses JSON — no need for response.json()
-Throws on non-2xx status codes, so you can catch errors more easily
-Cleaner config for headers
+The User Page displays the Firebase user id. It sends an `http` request with an Autherization bearer token. The backend in turn sends the token to Firebase, which returns the user id, and the backend sends the user id back to our frontend app and displays it.
 
-Automatically parses JSON response data
+The User Page listens for the users Auth state changes with `onAuthStateChange`. If the user is signed in then it displays the user id, otherwise it displays loading. The `unsuscribe` will cleanup after the `onAuthStateChange` listener unmounts.
 
-Axios Automatically rejects promises for HTTP error status codes
+```JS
+import React, { useEffect, useState } from "react";
+import { getUserId } from "../utils/backendTokenUserId";
+import { auth } from "../firebase-config";
+import { onAuthStateChanged } from "firebase/auth";
 
-Fetch Does not automatically reject promises for HTTP error status codes (e.g., 404, 500); requires manual checking of response.ok
+const UserPage: React.FC = () => {
+  const [userId, setUserId] = useState<string | null>(null);
 
-Automatically serializes request body data
+  useEffect(() => {
+    const unsubscribe = onAuthStateChanged(auth, async (user) => {
+      if (user) {
+        try {
+          const data = await getUserId();
+          setUserId(data.id);
+        } catch (error) {
+          console.error("Error fetching user ID:", error);
+        }
+      }
+    });
 
-Provides interceptors to modify requests and responses
+    return () => unsubscribe();
+  }, []);
 
-```sh
-$ npm install axios
+  return <div>User ID: {userId ?? "Loading..."}</div>;
+};
+
+export default UserPage;
 ```
 
-.env
+To send the Auth token to the backend and get the user id, the User Page makes use of our `auth` function in `../firebase-config.tsx`. It also imports a new function `getUserId` in `../utils/backendTokenUserId"`.
+
+```JS
+// src/utils/backendTokenUserId.tsx
+
+import { getAuthToken } from "./getAuthToken";
+
+// returns userId from token
+import axios from "axios";
+import { auth } from "../firebase-config";
+
+const BASE_URL = import.meta.env.VITE_BACKEND_URL;
+
+export const getUserId = async (): Promise<any> => {
+  const user = auth.currentUser;
+
+  if (!user) {
+    throw new Error("No authenticated user");
+  }
+
+  const token = await getAuthToken();
+
+  const response = await axios.get(`${BASE_URL}/userid`, {
+    headers: {
+      Authorization: `Bearer ${token}`,
+    },
+  });
+
+  return response.data;
+};
+```
+
+In order to know the backend URL, the following environment variable is put into the `.env` file.
 
 ```sh
 ...
 VITE_BACKEND_URL=http://localhost:8000
 ```
 
-# Other Useful Examples/Blog Posts
+Of course, change the `BACKEND_URL` to your deployed backend as required for your backend.
+
+The `getAuthToken` method (below) calls Firebase to get a token and the token is then sent in the Authorization header to the backend `/userid` route, which returns the user id.
+
+```JS
+//utils/getAuthToken.tsx
+import { auth } from "../firebase-config";
+
+export const getAuthToken = async (): Promise<string> => {
+  const user = auth.currentUser;
+  if (!user) throw new Error("No authenticated user");
+  return await user.getIdToken();
+};
+
+```
+
+We chose the 3rd party Axios library for the `http` requests over the native Fetch library because Axios automatically parses JSON — no need for response.json(). It also throws an error on non-2xx status codes, to catch errors more easily, and it automatically rejects promises for HTTP error status codes
+
+As usual, install Axios with npm.
+
+```sh
+$ npm import axios
+```
+
+You can test the functionality by signing into the app, signing in, and after sending the Auth token to the backend, and receiving userid from the backend it will display the user id.
+
+# Reference Blog Posts
 
 I began tyring to setup a React-Firebase-FastAPI app by readng a few blog posts. No one source fullfilled all the requirements, however, the following two articles were helpful.
 
