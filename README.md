@@ -19,9 +19,9 @@
 
 # Abstract
 
-A fundamental requirement of commercial applications is secure user sign-up and login via OAuth (authorization). React, the most widely adopted open-source JavaScript framework for building user interfaces, plays a central role in modern full-stack application development. Combined with Firebase and FastAPI, React forms a modern technology stack particularly well-suited for building full-stack applications such as analytics platforms, dashboards, data exploration tools, and scientific or research-oriented web applications where Python is preferred on the backend.
+A fundamental requirement of commercial Web applications is secure user sign-up and login via OAuth (authorization). React, the most widely adopted open-source JavaScript framework for building user interfaces, plays a central role in modern full-stack application development. Together, React, Firebase and FastAPI constitute a modern technology stack well-suited for building full-stack applications such as analytics platforms, dashboards, data exploration tools, and scientific or research-oriented web applications where Python is preferred on the backend.
 
-This repo demonstrates how to build a React application with user account creation and authentication using Firebase. It provides a realistic starting point for a full-stack application, with client-side user management features including OAuth login, sign-up, password reset, and a protected user home page. The React frontend is also connected to a FastAPI backend with secure token validation. This serves as a strong foundation for a production-ready full-stack application.
+This repo demonstrates how to build a React application with user account creation and authentication using Firebase. It provides a realistic starting point for a full-stack application, with client-side user management features including sign-in, sign-up, password reset, and a protected user home page. This app example (this repo) serves as a strong foundation for a production-ready full-stack application.
 
 # Create the React App with Vite
 
