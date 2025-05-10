@@ -19,9 +19,9 @@
 
 # Abstract
 
-A fundamental requirement of commercial Web applications is secure user sign-up and login via OAuth (authorization). React, the most widely adopted open-source JavaScript framework for building user interfaces, plays a central role in modern full-stack application development. Together, React, Firebase and FastAPI constitute a modern technology stack well-suited for building full-stack applications such as analytics platforms, dashboards, data exploration tools, and scientific or research-oriented web applications where Python is preferred on the backend.
+A fundamental requirement of commercial web applications is secure user sign-up and sign-in ("login") with secure Authorization. React, the most widely adopted open-source JavaScript framework for building user interfaces, plays a central role in modern full-stack application development. Together, React, Firebase and FastAPI constitute a modern technology stack well-suited for building full-stack applications such as analytics platforms, dashboards, data exploration tools, and scientific or research-oriented applications where Python is preferred on the backend.
 
-This repo demonstrates how to build a React application with user account creation and authentication using Firebase. It provides a realistic starting point for a full-stack application, with client-side user management features including sign-in, sign-up, password reset, and a protected user home page.
+This repo demonstrates how to build a React application with user account creation and authentication using Firebase and support of a fastAPI backend. It provides a realistic starting point for a full-stack application, with client-side user management features including sign-in, sign-up, password reset, and a protected user home page.
 
 # Create the React App with Vite
 
@@ -93,19 +93,19 @@ The goal for this app is managing user login with sign-in, sign-up and ulitmatel
 
 The page links work as follows:
 
-- The apps landing page, "/" is the Home Page. In a real application the Home Page contains content corresponding to the business and branding.
+- The apps landing page, "/" is the Home Page. In a real application the Home Page contains content corresponding to the business.
 - From the Home page, the user may choose to sign-in, or sign-up.
 - From the Sign-in page, once signed-in, the user will automatically be directed to the User Page.
 - Later we will create a protected route for the User Page, that is, the User page is only accessible if the user is signed-in.
 - The Sign-up page enables the user to create an account with the application.
-- A Reset Password page is accessable with a link from the Sign-in page. When reseting the password
+- A Reset Password page is accessable with a link from the Sign-in page.
 
 THe content for these initial pages is an `h1` tag with the name of the page.
 
-In order handle page routes in React we will install `react-router-dom` with the following command.
+In order handle page routes in React we will install `react-router-dom` as follows.
 
 ```sh
-$ install react-router-dom
+$ npm install react-router-dom
 ```
 
 Our initial app pages are listed in the code blocks below.
@@ -128,7 +128,7 @@ ReactDOM.createRoot(document.getElementById("root")!).render(
 );
 ```
 
-App.tsx is simplifed from the default setup. All the unnecessary `Vite-React` boiler plate is removed. App.tsx imports RouterProvider, and initializes it with the router defined in `router.tsx`.
+App.tsx is simplifed from the default setup. All the unnecessary `Vite-React` boiler plate is removed. App.tsx imports RouterProvider, and initializes it with the router defined in `routes.tsx`.
 
 App.tsx
 
@@ -149,9 +149,7 @@ function App() {
 export default App;
 ```
 
-The routes are defined in `router.tsx` with `createBrowserRouter`, which creates a "Browser History" router. This "Browser History Router" supports HTML5 functionaly, via the HTML5 Browser History API. HTML5 supports features like detecting when the user pushes Back and Forward buttons, updating the URL without adding a new entry to the history, and changing the URL without reloading the page.
-
-Notice that pages (Home, Signin, Signup, User, Reset Password) are nested inside the shared Header layout.
+The routes are defined in `routes.tsx` with `createBrowserRouter`, which creates a "Browser History" router. This "Browser History Router" supports HTML5 functionaly, via the HTML5 Browser History API. HTML5 supports features like detecting when the user pushes Back and Forward buttons, updating the URL without adding a new entry to the history, and changing the URL without reloading the page.
 
 routes.tsx
 
@@ -185,7 +183,7 @@ const router = createBrowserRouter(
 export default router;
 ```
 
-The Header layout is defined in `components/header.tsx`. The `Outlet` component acts as a place holder for the child routes to be rendered (Home, Signin, Signup, Reset Password, and User Page).
+The Header layout is defined in `components/header.tsx`. The `Outlet` component acts as a place holder for the child routes to be rendered (Home, Signin, Signup, and User Page).
 
 ```JS
 //component/header.tsx
@@ -228,7 +226,7 @@ const Home = () => {
 export default Home;
 ```
 
-The Sign -in page, at this point, contains an `<h1>` tag with the name of the page, and has a link to the Reset Passwor page.
+The Sign-in page, at this point, contains an `<h1>` tag with the name of the page, and has a link to the Reset Passwor page.
 
 Sign-in page
 
@@ -310,9 +308,9 @@ In your browser, go to the apps URL - http://localhost:5173/ and you should see 
 
 # Introduction to Firebase
 
-Before diving into the setup, its useful to review and understand the overall Firebase features. Firebase is a comprehensiveaApp development service by Google hosted in GCP (Google CLoud Platorm). It provides a suite of tools and services to help developers build, improve, and grow web and mobile applications. Firebase is also compatable with other GCP features such as cloud functons which can trigger actions based on Firebase for easy integration of other cloud tools.
+Before diving into the Firebause Auth setup, its useful to review and understand the overall Firebase features. Firebase is a comprehensiveaApp development service by Google hosted in GCP (Google CLoud Platorm). It provides a suite of tools and services to help developers build, improve, and grow web and mobile applications. Firebase is also compatable with other GCP features such as cloud functons which can trigger actions based on Firebase for easy integration of other cloud tools.
 
-Below are some of the features it offers
+Below is a list of some of the features it offers
 
 - SDKs for iOS, Android, and Web
 - App Hosting
@@ -335,12 +333,12 @@ In our example app (this repo) we will make use of the authentication. Later, as
 
 # Setup Firebase and Firestore
 
-In the GCP console, setup Firebasee and Firestore. Firebase Authentication will manage passwords and even provides the functionality for a user to update/reset a password. It is also typical to setup Firestore to hold customer details, for example, such as screen name, or other useful customer information. When it comes to "other customer details", Personal information management, security and privacy, is out of scope for our exercise, however the methods in this repo are still the basis of an app setup. Additional security and privacy procedurs can be implemented on top of this foundation.
+In the GCP console, setup Firebasee and Firestore. Firebase Authentication will manage passwords and even provides the functionality for a user to update/reset a password. It is also typical to setup Firestore to hold customer details, for example, such as screenname, or other useful customer information. When it comes to "other customer details", Personal information management, security and privacy, is out of scope for our exercise, however the methods in this repo are still the basis of an app setup. Additional security and privacy procedurs can be implemented on top of this foundation.
 
 Step-by-step setup
 
 - Go to the Firebase console
-  - Create a firebase project or use one you an existing firebase project.
+  - Create a firebase project or use an existing firebase project.
   - Skip (unclick) Google Analytics for now. You can add it later if so desired.
 - Go to your projects firebase console, then click on "All Products" on the left pane.
   ![Firebase Authentication](./images/firebase_authentication.png)
@@ -377,7 +375,7 @@ Step-by-step setup
 - In your projects root dicrectory create the `.env` to hold project secrets
 
   - Make sure `.env` is listed in your `.gitignore` so that the secrets do not get published to your repo
-  - the `.env` file will include following entries. You will need to add the `VITE_` prefix for each key name.
+  - the `.env` file will include following entries. You will need to add the `VITE_` prefix for each keyname.
 
     ```JS
     //.env
@@ -391,46 +389,53 @@ Step-by-step setup
 
 # Firebase Config
 
-Next, we will setup Firebase functionality in the App.
+Next, we setup Firebase functionality in the App.
 In the App directory, install the Firebase package.
 
 ```sh
 $ npm install firebase
 ```
 
-In addition to adding the Firebase package, this will add Firebase to the `package.json`
+In addition to adding the Firebase package, this also will add Firebase to the `package.json`
 
-In the applications src directory, Create `firebase-config.tsx` with the following contents. This file is similar to what you see in the Firebase settings page (GCP console); however, in our case, the environment secrets are read from the `.env` file. You do not want these secrets in your app code or they can be visible in the web console.
-
-The comments about where to find additional Firebase libraries can be useful for the future.
-
-In addition to initializing the application's environment variables, the code also imports getAuth, which supports login with Email and Password, signout, and AuthStateChanged. The Auth service is initialized and exported so it is available anywhere in the application
-
-The `import.meta.env.VITE_KEY` pattern is the method for importing build-time metadata (e.g.,environment variatbles). The "`Vite_`" prefix is required to expose variables to the frontend.
+In the applications src directory, Create `firebase-config.tsx` with the following contents.
 
 ```JS
 //firebase-config.tsx
 import { initializeApp } from "firebase/app";
+
+//GetAuth Method is used to Configure our app to use Firebase Authentication
+import { getAuth } from "firebase/auth";
+
+import { getFirestore } from "firebase/firestore";
+
 // TODO: Add SDKs for Firebase products that you want to use
 // https://firebase.google.com/docs/web/setup#available-libraries
 
-
-import { getAuth } from "firebase/auth";
-
 const firebaseConfig = {
-    apiKey: import.meta.env.VITE_APIKEY,
-    authDomain: import.meta.env.VITE_AUTHDOMAIN,
-    projectId: import.meta.env.VITE_PROJECTID,
-    storageBucket: import.meta.env.VITE_STORAGEBUCKET,
-    messagingSenderId: import.meta.env.VITE_MESSAGINGSENDERID,
-    appId: import.meta.env.VITE_APPID
-  };
+  apiKey: import.meta.env.VITE_APIKEY,
+  authDomain: import.meta.env.VITE_AUTHDOMAIN,
+  projectId: import.meta.env.VITE_PROJECTID,
+  storageBucket: import.meta.env.VITE_STORAGEBUCKET,
+  messagingSenderId: import.meta.env.VITE_MESSAGINGSENDERID,
+  appId: import.meta.env.VITE_APPID,
+};
 
 const app = initializeApp(firebaseConfig);
+
+export const db = getFirestore();
 
 export const auth = getAuth(app);
 
 ```
+
+This file is similar to what you see in the Firebase settings page (GCP console); however, in our case, the environment secrets are read from the `.env` file. You do not want these secrets in your app code or they can be visible in the web console.
+
+The comments about where to find additional Firebase libraries can be useful for the future.
+
+In addition to initializing the application's environment variables, the code also imports getAuth, which supports login (sign-in), signout, and AuthStateChanged. The Auth service is initialized and exported so it is available anywhere in the application
+
+The `import.meta.env.VITE_KEY` pattern is the method for importing build-time metadata (e.g.,environment variatbles). Vite requires the "`Vite_`" prefix is required to expose variables to the frontend.
 
 In the src directory, create the `vite-env.d.ts` file with the following contents.
 
@@ -446,7 +451,7 @@ http://localhost:5173/
 
 # CSS Styling
 
-Some basic styling for the app pages is added to `App.css`, beyond the default Vite-React styling. The styling provides a simple design style intended to be elegant in its simplicity. The main contribution of this repo is setting up user Firebase Auth and user management in the App, however some minimal styling is needed. This CSS based styling can be easily be removed and the styling upgraded to another styles framework.
+Some basic styling for the app pages is added to `App.css`, beyond the default Vite-React styling. The styling provides a simple design style intended to be elegant in its simplicity. The main contribution of this repo is setting up user Firebase Auth and user management in the App, however some minimal styling is needed. This CSS based styling can be easily be removed and the styling upgraded to a different CSS framework.
 
 CSS styles are added for
 
@@ -455,8 +460,6 @@ CSS styles are added for
 - Paragraph - hover functionality for links within a paragraph.
 
 # Header Page
-
-![Sign-up Page](./images/signup.png)
 
 Our updated Header Page contains the navbar functionality needed to manage the user login including links to other pages.
 
@@ -482,7 +485,7 @@ function Header() {
 
   const handleHome = () => {
     if (auth.currentUser) {
-      navigate("/user");
+      navigate("/user_page");
     } else {
       navigate("/");
     }
@@ -532,15 +535,15 @@ function Header() {
 export default Header;
 ```
 
-Reviewing the Header Page code, the following functionality is noteable.
+The following functionality is noteable.
 
-- First, if an error occurs, in Sign-out, a "Toast" notification is triggered. Install Toastify package in the app as follows.
+- If an error occurs, in Sign-out, a "Toast" notification is triggered. Install Toastify package in the app as follows.
 
   ```JS
   $ npm install react-tostify
   ```
 
-- CSS `className`s in the layout.
+- CSS `classNames` in the layout.
 - The `Outlet` component is used to embed the corresponding page under the navbar
 - `auth` is imported from `firebase-config`
 - `sigOout` is imported from `firebase/auth`
@@ -548,11 +551,13 @@ Reviewing the Header Page code, the following functionality is noteable.
 - If the user is signed in (auth is not null) then the `Sign-out` link appears in the navbar, otherwise the `Sign-in` link appears in the navbar.
 - Also, if the user is signed in they are directed to the User Page, otherwise the Apps Home Page.
 
-Below is an screenshot of the new Header page with active page set to Sign-up. In the following sections we will discuss the details underlying the sign-up and other pages.
+Below is a screenshot of the new Header page with active page set to Sign-up. In the following sections we will discuss the details underlying the sign-up and other pages.
+
+![Sign-up Page](./images/signup.png)
 
 # Sign-up
 
-The sign-up page includes a Form to sign-up a new user with their email and password. It is straight forward to add additional functionality of signing up with another service, e.g., Gmail.
+The sign-up page includes a Form to sign-up a new user with their email and password. It should be straight forward to add additional functionality for signing up with another service, e.g., Gmail, etc.
 
 ```JS
 // pages/signup.tsx
@@ -676,9 +681,9 @@ The following features are noteable in the code:
 
 - the page layout is contained within a CSS defined `form Container`
 - the sign-up form collects the users `screenName`, `email`, and `password`.
-- `handleSubmit` processes the for
+- `handleSubmit` processes the sign-up, including
   - `createUserWithEmailPassword` creates a new user.
-  - authorization is setup for the new user
+  - authorization for the new user
   - a local (client side) profile for the user is created with the users screenName
   - Next, a new Firebase doc is created with the email and screenName
   - Finally, if there is an error a toast notification is displayed on the page.
@@ -919,15 +924,15 @@ const PrivateRoute = () => {
 export default PrivateRoute;
 ```
 
-We don’t want to immediately redirect to /signin before Firebase has a chance to load, therefore `onAuthStateChanged` is detected because `auth.currentUser` is often null on first render. Firebase needs a moment to initialize the authentication state. Without it, protected routes may falsely redirect unauthenticated users even if they’re logged in., This issue is fixed by listening for Firebase's auth state along with a loading indicator (or nothing, or a spinner) while waiting
+We don’t want to immediately redirect to /signin before Firebase has a chance to load, therefore `onAuthStateChanged` is detected because `auth.currentUser` is often null on first render. Firebase needs a moment to initialize the authentication state. Without it, protected routes may falsely redirect unauthenticated users even if they’re not logged in., This issue is fixed by listening for Firebase's auth state along with a loading indicator (or nothing, or a spinner) while waiting
 
 # Connecting to a FastAPI Backend
 
 To connect our React app functionality we deployed the fastAPI, described [here](https://github.com/Aljgutier/fastapi_docker/tree/main), to our local environment.
 
-The User Page displays the Firebase user id. It sends an `http` request with an Autherization bearer token. The backend in turn sends the token to Firebase, which returns the user id, and the backend sends the user id back to our frontend app and displays it.
+The User Page displays the Firebase user id. It sends an `http` request with an Autherization bearer token to the backend API. The backend in turn sends the token to Firebase, which returns the user id, and the backend sends the user id back to our frontend.
 
-The User Page listens for the users Auth state changes with `onAuthStateChange`. If the user is signed in then it displays the user id, otherwise it displays loading. The `unsuscribe` will cleanup after the `onAuthStateChange` listener unmounts.
+The User Page (listed below) listens for the users Auth state changes with `onAuthStateChange`. If the user is signed in then it displays the user id, otherwise it displays loading. The `unsuscribe` will cleanup after the `onAuthStateChange` listener unmounts.
 
 ```JS
 import React, { useEffect, useState } from "react";
@@ -991,16 +996,16 @@ export const getUserId = async (): Promise<any> => {
 };
 ```
 
-In order to know the backend URL, the following environment variable is put into the `.env` file.
+In order to know the backend URL, add the following environment variable to the `.env`.
 
 ```sh
 ...
 VITE_BACKEND_URL=http://localhost:8000
 ```
 
-Of course, change the `BACKEND_URL` to your deployed backend as required for your backend.
+Of course, change the `BACKEND_URL` to your deployed backend as required.
 
-The `getAuthToken` method (below) calls Firebase to get a token and the token is then sent in the Authorization header to the backend `/userid` route, which returns the user id.
+The `getAuthToken` method (below) calls Firebase to get a token and the token is then sent in the Authorization header to the backend `/userid` route, which then returns the user id in its response.
 
 ```JS
 //utils/getAuthToken.tsx
@@ -1014,7 +1019,11 @@ export const getAuthToken = async (): Promise<string> => {
 
 ```
 
-We chose the 3rd party Axios library for the `http` requests over the native Fetch library because Axios automatically parses JSON — no need for response.json(). It also throws an error on non-2xx status codes, to catch errors more easily, and it automatically rejects promises for HTTP error status codes
+We chose the 3rd party Axios library to send the `http` requests over the native Fetch library for the following reasons:
+
+- Axios automatically parses JSON — no need for response.json()
+- It throws an error on non-2xx status codes, making it easier catch errors
+- it automatically rejects promises for HTTP error status codes
 
 As usual, install Axios with npm.
 
