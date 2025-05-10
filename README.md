@@ -793,6 +793,8 @@ The Sign-in code is similar to that of the Sign-up page.
 
 # Reset Password
 
+![Reset Password Page](./images/reset_password_page.png)
+
 The Reset Password page collects the users email. Firebase will send an email to the user allowing them to change their password.
 
 ```JS
