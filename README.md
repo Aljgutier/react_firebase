@@ -226,7 +226,7 @@ const Home = () => {
 export default Home;
 ```
 
-The Sign-in page, at this point, contains an `<h1>` tag with the name of the page, and has a link to the Reset Passwor page.
+The Sign-in page, at this point, contains an `<h1>` tag with the name of the page, and has a link to the Reset Password page.
 
 Sign-in page
 
@@ -308,7 +308,7 @@ In your browser, go to the apps URL - http://localhost:5173/ and you should see 
 
 # Introduction to Firebase
 
-Before diving into the Firebause Auth setup, its useful to review and understand the overall Firebase features. Firebase is a comprehensiveaApp development service by Google hosted in GCP (Google CLoud Platorm). It provides a suite of tools and services to help developers build, improve, and grow web and mobile applications. Firebase is also compatable with other GCP features such as cloud functons which can trigger actions based on Firebase for easy integration of other cloud tools.
+Before diving into the Firebause Auth setup, its useful to review the overall set of Firebase features. Firebase is a comprehensivea app development service hosted in GCP (Google CLoud Platorm). It provides a suite of tools and services to help developers build, improve, and grow web and mobile applications. Firebase is also compatable with other GCP features such as cloud functons which can trigger actions based on Firebase for easy integration of other cloud tools.
 
 Below is a list of some of the features it offers
 
@@ -333,21 +333,21 @@ In our example app (this repo) we will make use of the authentication. Later, as
 
 # Setup Firebase and Firestore
 
-In the GCP console, setup Firebasee and Firestore. Firebase Authentication will manage passwords and even provides the functionality for a user to update/reset a password. It is also typical to setup Firestore to hold customer details, for example, such as screenname, or other useful customer information. When it comes to "other customer details", Personal information management, security and privacy, is out of scope for our exercise, however the methods in this repo are still the basis of an app setup. Additional security and privacy procedurs can be implemented on top of this foundation.
+Start by setuping up Firebasee and Firestore in the Firebase GCP Console. Firebase Authentication manages passwords and provides functionality for a user to update/reset a password. It is also typical to setup Firestore to hold customer details, for example, such as screenname, or other useful customer information. When it comes to "other customer details", Personal information management, security and privacy, is out of scope for our exercise, however the methods in this repo are an underlying basis of an app setup. Additional security and privacy procedurs can be implemented on top of this foundation.
 
 Step-by-step setup
 
 - Go to the Firebase console
   - Create a firebase project or use an existing firebase project.
   - Skip (unclick) Google Analytics for now. You can add it later if so desired.
-- Go to your projects firebase console, then click on "All Products" on the left pane.
+- Go to the projects firebase console, then click on "All Products" on the left pane.
   ![Firebase Authentication](./images/firebase_authentication.png)
 
   - add email/password to the authentication methods
-  - choose any other auth providers.
+  - choose any other auth providers - we demonstrate setup of email and password sign-in, but extensions to others is straight forward.
     ![Firebase Project Settings](./images/firebase_settings_sdk.png)
 
-- Also, from the Firebase Products, create a Firestore database.
+- From the Firebase Products, create a Firestore database.
   - Test configuration (not production)
   - Create the User collection
   - For now, do not create any documents
