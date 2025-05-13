@@ -33,7 +33,7 @@ Pre-requisites
 Next, create your react app from template, with `vite`. In a directory just above your desired project directory, create the application with the following shell command. This will create the project directory, e.g., `react_firebase` along with the default project files and structure.
 
 ```sh
-$ npm create vite@latest react_firebase –template react
+$  npm create vite@latest react_firebase -- --template react
 
 ```
 
