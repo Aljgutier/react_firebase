@@ -19,9 +19,9 @@
 
 # Abstract
 
-A fundamental requirement of commercial web applications is secure user sign-up and sign-in ("login") with secure authorization. React, the most widely adopted open-source JavaScript framework for building user interfaces, plays a central role in modern full-stack application development. Together, React, Firebase and FastAPI constitute a modern technology stack well-suited for building applications such as analytics platforms, dashboards, data exploration tools, and scientific or research-oriented applications where Python is preferred on the backend.
+A fundamental requirement of commercial web applications is secure user sign-up and sign-in ("login") including basic user management. React, the most widely adopted open-source JavaScript framework for building user interfaces, plays a central role in modern full-stack application development. Together, React, Firebase and FastAPI constitute a modern technology stack well-suited for building applications such as analytics platforms, dashboards, data exploration tools, and scientific or research-oriented applications where Python is preferred on the backend.
 
-This repo demonstrates how to build a React application with user account creation, authentication using Firebase, and connecting with a fastAPI backend. It provides a realistic starting point for a full-stack Reat application with client-side user management features including sign-in, sign-up, password reset, and a protected user home page.
+This repo demonstrates how to build a React application with user account creation, authentication using Firebase, and connecting with a fastAPI backend. It provides a realistic starting point for a full-stack React application with client-side user management features including sign-in, sign-up, password reset, and a protected user home page.
 
 # Create the React App with Vite
 
@@ -84,6 +84,8 @@ The application's file/directory structure is as follows
 ```
 
 As compared to the `create-react-app`, the approach used before v19, there is now a`main.tsx` in the src directory instead of `index.jsx` and in the public directory `vite.svg`. We also see `vite.config.js` in the main project directory.
+
+The vite.config.js is an object with different keys such as plugins, server, build, preview, optimizeDeps, worker, and more. For detailed information ont the vite config, find the documentation [here](https://vite.dev/config/)
 
 Notice that the App and main suffixes are changed `tsx` (manually changed, after the app creation) since our implementation will follow typescript conventions.
 
